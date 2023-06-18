@@ -110,45 +110,17 @@ app.get("/api/categories", async (req, res) => {
 // Add a new product to the database and associate it with an existing category
 app.post("/api/admin/add-product", async (req, res) => {
   try {
-    const {
-      productname,
-      description,
-      price,
-      brand,
-      image,
-      category,
-      countInStock,
-      rating,
-      quantity,
-    } = req.body;
+    const { propertyname, description, price, image, rating } = req.body;
     console.log(req.body);
-    if (
-      !productname ||
-      !description ||
-      !price ||
-      !brand ||
-      !image ||
-      !category ||
-      !countInStock ||
-      !rating
-    ) {
+    if (!propertyname || !description || !price || !image || !rating) {
       return res.status(400).send({ message: "Missing required fields" });
     }
-
-    const foundCategory = await models.Category.findOne({ category });
-    if (!foundCategory) {
-      return res.status(404).send({ message: "Category not found" });
-    }
     const product = new models.Product({
-      productname,
+      propertyname,
       description,
       price,
-      brand,
       image,
-      category,
-      countInStock,
       rating,
-      quantity,
       dateCreated: new Date(),
     });
 

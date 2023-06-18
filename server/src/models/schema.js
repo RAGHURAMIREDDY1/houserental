@@ -20,15 +20,11 @@ const categorySchema = new mongoose.Schema({
 });
 
 const productSchema = new mongoose.Schema({
-  productname: { type: String, required: true },
+  propertyname: { type: String, required: true },
   description: { type: String, required: true },
   price: { type: Number, required: true },
-  brand: { type: String, required: true },
   image: { type: String, required: true },
-  category: { type: String, ref: "Category", required: true },
-  countInStock: { type: Number, required: true, min: 0, max: 255 },
   rating: { type: Number, required: true },
-  quantity: { type: Number, default: 1 },
   dateCreated: { type: Date, default: Date.now },
 });
 
